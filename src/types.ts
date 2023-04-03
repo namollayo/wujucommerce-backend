@@ -1,5 +1,6 @@
 export type TUser = { 
     id:string,
+    name:string,
     email:string,
     password:string 
 }
@@ -7,8 +8,9 @@ export type TUser = {
 export type TProduct = {
     id:string,
     name:string,
-    price:number,
-    category:string
+    priceflight:number,
+    priceday:number,
+    universe:TRAVEL_UNIVERSE
 }
 
 export type TPurchase = {
@@ -16,4 +18,10 @@ export type TPurchase = {
     productId:string,
     quantity:number,
     totalPrice:number
+}
+
+export enum TRAVEL_UNIVERSE {
+    AVATAR = 'Avatar',
+    MARVEL = 'Marvel',
+    STAR_WARS = 'Star Wars'    
 }
