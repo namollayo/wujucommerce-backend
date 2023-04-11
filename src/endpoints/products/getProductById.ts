@@ -2,8 +2,8 @@ import { Request, Response } from 'express'
 import { products } from '../../database'
 
 export const getProductsById = (req: Request, res: Response) => {
-    const searchId = req.params.id
-    const searchProduct = products.find((product)=> product.id === searchId)
+    const searchedId = req.params.id
+    const searchedProduct = products.find((product)=> product.id === searchedId)
     
-    return res.status(200).send(searchProduct)
+    return res.status(200).send(searchedProduct)
 }
