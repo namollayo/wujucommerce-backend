@@ -1,10 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import { getProductsById } from './endpoints/products/getProductById'
-import { getUserPurchasesByUserId } from './endpoints/purchases/getUserPurchasesByUserId'
-import { getAllUsers } from './endpoints/users/getAllUsers'
-import { getAllProducts } from './endpoints/products/getAllProducts'
-import { getProductByName } from './endpoints/products/getProductByName'
+// import { getProductsById } from './endpoints/products/getProductById'
+// import { getUserPurchasesByUserId } from './endpoints/purchases/getUserPurchasesByUserId'
+import { getUsers } from './endpoints/users/getUsers'
+import { getProducts } from './endpoints/products/getProducts'
 import { createProduct } from './endpoints/products/postCreateProduct'
 import { createPurchase } from './endpoints/purchases/postCreatePurchases'
 import { createUser } from './endpoints/users/postCreateUser'
@@ -23,17 +22,16 @@ app.listen(3003, () => {
     console.log("Servidor rodando na porta 3003");
 });
 
-app.get('/users', getAllUsers)
+app.get('/users', getUsers)
 app.post('/users', createUser)
-app.delete('/users/:id', removeUser)
-app.put('/users/:id', editUser)
+// app.delete('/users/:id', removeUser)
+// app.put('/users/:id', editUser)
 
-app.get('/products', getAllProducts)
-app.get('/products/search', getProductByName)
-app.get('/products/:id', getProductsById)
+app.get('/products', getProducts)
+// app.get('/products/:id', getProductsById)
 app.post('/products', createProduct)
 app.delete('/products/:id', removeProduct)
 app.put('/products/:id', editProduct)
 
 app.post('/purchases', createPurchase)
-app.get('/users/:id/purchases', getUserPurchasesByUserId)
+// app.get('/users/:id/purchases', getUserPurchasesByUserId)

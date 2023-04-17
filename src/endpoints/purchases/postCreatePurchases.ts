@@ -1,16 +1,22 @@
 import { Request, Response } from 'express'
-import { purchases } from '../../database'
 import { TPurchase } from '../../types'
+import { db } from '../../database/knex'
 
 export const createPurchase =(req: Request, res: Response) => {
-    const { userId, productId, quantity, totalPrice } = req.body
-    const newPurchase : TPurchase ={
-        userId,
-        productId,
-        quantity,
-        totalPrice
-    }
+    try {
+        const { id, buyer, totalPrice, products} = req.body
+        const {  userId, productId, nights, quantity } = products
+    
 
-    purchases.push(newPurchase)
-    return res.status(201).send("Purchase Successfully Done")
+    } catch(error) {        
+        if (res.statusCode === 200) {
+            res.status(500)
+        }
+
+        if ( error instanceof Error) {
+            res.send(error.message)
+        } else {
+            res.send("Unexpected error")
+        }
+    }
 }
