@@ -35,12 +35,27 @@ export type TProductDB = {
 }
 
 export type TPurchase = {
-    userId:string,
-    productId:string,
-    quantity:number,
-    nights:number,
-    totalPrice:number
+    id:string| undefined,
+    buyer:string| undefined,
+    paid:boolean| undefined,
+    createdAt:string| undefined,
+    totalPrice:number| undefined
 }
+
+
+export type TPurchase_Product = { id:string| undefined,
+buyer:string| undefined,
+totalPrice:number | undefined,
+products: TProduct_Purchase[] | undefined []
+}
+
+export type TProduct_Purchase = {
+    purchaseId: string| undefined,
+    productId: string| undefined,
+    nights:number | undefined,
+    quantity:number | undefined
+}
+
 
 export enum TRAVEL_UNIVERSE {
     ALIEN = 'Alien',
