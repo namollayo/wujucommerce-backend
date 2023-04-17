@@ -9,8 +9,9 @@ import { createPurchase } from './endpoints/purchases/postCreatePurchases'
 import { createUser } from './endpoints/users/postCreateUser'
 import { removeProduct } from './endpoints/products/delProductById'
 import { removeUser } from './endpoints/users/delUserById'
-import { editUser } from './endpoints/users/putUserById'
+// import { editUser } from './endpoints/users/putUserById'
 import { editProduct } from'./endpoints/products/putProductById'
+import { removePurchase } from './endpoints/purchases/delPurchaseById'
 
 
 const app = express()
@@ -24,7 +25,7 @@ app.listen(3003, () => {
 
 app.get('/users', getUsers)
 app.post('/users', createUser)
-// app.delete('/users/:id', removeUser)
+app.delete('/users/:id', removeUser)
 // app.put('/users/:id', editUser)
 
 app.get('/products', getProducts)
@@ -34,4 +35,5 @@ app.delete('/products/:id', removeProduct)
 app.put('/products/:id', editProduct)
 
 app.post('/purchases', createPurchase)
+app.delete('/purchases/:id', removePurchase)
 // app.get('/users/:id/purchases', getUserPurchasesByUserId)

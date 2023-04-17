@@ -16,7 +16,7 @@ export const createUser = async (req: Request, res: Response) => {
         for (const key in newUser) {
             if (newUser[key as keyof TUser] === undefined) {
                 res.status(400)
-                throw new Error(`all fields must be filled in`)
+                throw new Error(`All fields must be filled in`)
             } 
             if (typeof newUser[key as keyof TUser] !== "string") {
             res.status(400)
