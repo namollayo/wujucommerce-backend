@@ -37,7 +37,7 @@ Sugere-se o uso do Postman
 ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) 
 ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
-![Knex.js](tinyurl.com/bdh7cvrt)
+![Knex.js](https://tinyurl.com/bdh7cvrt)
 
 ## Endpoints
 
