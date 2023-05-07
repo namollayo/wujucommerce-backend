@@ -6,11 +6,11 @@ export const getUsers = async (req: Request, res: Response) => {
         const searchTerm = req.query.q as string | undefined
 
         if(searchTerm !== undefined) {
-            const result = await db('users').where("NAME","LIKE",`%${searchTerm}%`) 
+            const result = await db('users').select("id", "name", "email", "password", "created_at as createdAt").where("NAME","LIKE",`%${searchTerm}%`)
             return res.status(200).send(result)
         }
         
-        const result = await db('users')
+        const result = await db('users').select("id", "name", "email", "password", "created_at as createdAt")
         return res.status(200).send(result)
 
     } catch(error) {        
