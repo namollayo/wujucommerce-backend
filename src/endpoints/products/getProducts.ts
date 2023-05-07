@@ -9,6 +9,8 @@ export const getProducts = async (req: Request, res: Response) => {
             const result = await db('products')
             .where("name","LIKE",`%${searchTerm}%`)
             .orWhere("universe","LIKE",`%${searchTerm}%`) 
+            .select('id','name','price',"price_night as priceNight",
+            'description','universe','image_url as imageUrl' )
             if(result.length <= 0 ) {
                 res.status(404)
                 throw new Error("Product not found")
@@ -16,7 +18,8 @@ export const getProducts = async (req: Request, res: Response) => {
             return res.status(200).send(result)
         }
         
-        const result = await db('products')
+        const result = await db('products').select('id','name','price',"price_night as priceNight",
+            'description','universe','image_url as imageUrl' )
         return res.status(200).send(result)
 
     

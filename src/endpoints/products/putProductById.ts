@@ -39,49 +39,63 @@ export const editProduct = async (req: Request, res: Response) => {
             }
         }
 
-    
-        if (id.length < 4 ) {
-            res.status(400)
-            throw new Error("'id' must have at least 4 characters")
-        }
-        
-        if (name.length < 2 ) {
-            res.status(400)
-            throw new Error("'name' must have at least 2 characters")
-        }
-
-        if (description.length < 5 ) {
-            res.status(400)
-            throw new Error("'description' must have at least 5 characters")
-        }
-        
-        if (price <= 0 || priceNight  <= 0) {
-            res.status(400)
-            throw new Error("Invalid value of price and price per night")
-        }
-
-        if (universe !== TRAVEL_UNIVERSE.ALIEN &&
-            universe !== TRAVEL_UNIVERSE.AVATAR &&
-            universe !== TRAVEL_UNIVERSE.DC_COMICS &&
-            universe !== TRAVEL_UNIVERSE.DR_WHO &&
-            universe !== TRAVEL_UNIVERSE.DUNA &&
-            universe !== TRAVEL_UNIVERSE.MARVEL &&
-            universe !== TRAVEL_UNIVERSE.STAR_TREK && 
-            universe !== TRAVEL_UNIVERSE.STAR_WARS) {
+        if(id !== undefined){
+            if (id.length < 4 ) {
                 res.status(400)
-                throw new Error("Invalid value of universe")
+                throw new Error("'id' must have at least 4 characters")
             }
+        }
+
+        if(name !== undefined){
+            if (name.length < 2 ) {
+                res.status(400)
+                throw new Error("'name' must have at least 2 characters")
+            }
+        }
+
+        if(description !== undefined){
+            if (description.length < 5 ) {
+                res.status(400)
+                throw new Error("'description' must have at least 5 characters")
+            }
+        }
+        
+        if(price !== undefined || priceNight !== undefined){
+            if (price <= 0 || priceNight  <= 0) {
+                res.status(400)
+                throw new Error("Invalid value of price and price per night")
+            }
+        }
+
+        if(id !== undefined){
+            if (universe !== TRAVEL_UNIVERSE.ALIEN &&
+                universe !== TRAVEL_UNIVERSE.AVATAR &&
+                universe !== TRAVEL_UNIVERSE.DC_COMICS &&
+                universe !== TRAVEL_UNIVERSE.DR_WHO &&
+                universe !== TRAVEL_UNIVERSE.DUNA &&
+                universe !== TRAVEL_UNIVERSE.MARVEL &&
+                universe !== TRAVEL_UNIVERSE.STAR_TREK && 
+                universe !== TRAVEL_UNIVERSE.STAR_WARS) {
+                    res.status(400)
+                    throw new Error("Invalid value of universe")
+                }
+        }
             
+        if(id !== undefined){
             const [ productIdExist ]:TProductDB[] | undefined[] = await db('products').where({id}) 
             if (productIdExist) {
                 res.status(400)
-                throw new Error(`This destination's id is already in use: ${id}`);   
+                throw new Error(`This destination's id is already in use: ${ productId}`);   
             }
+        }
+
+        if(id !== undefined){
             const [ productNameExist ]:TProductDB[] | undefined[] = await db('products').where({name}) 
             if (productNameExist) {
                 res.status(400)
                 throw new Error(`This destination's name is already in use: ${name}`);   
             }
+        }
 
         const [ product ]:TProductDB[] | undefined[] = await db('products').where({id: productId})
         if (!product) {
@@ -90,7 +104,7 @@ export const editProduct = async (req: Request, res: Response) => {
         }
         
         const editedProduct : TProductDB ={
-            id: id || product.id,
+            id: id || productId,
             name: name || product.name,
             price: price || product.price,
             priceNight: priceNight || product.priceNight,
@@ -105,7 +119,7 @@ export const editProduct = async (req: Request, res: Response) => {
         await db('products').update(editedProduct).where({id:productId})
         res.status(200).send({
             message: "Product updated successfully",
-            product: editProduct
+            editProduct
     })
 
     } catch (error) {        

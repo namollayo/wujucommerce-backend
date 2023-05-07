@@ -6,6 +6,7 @@ export const getPurchasesById = async (req: Request, res: Response) => {
         const searchId = req.params.id as string | undefined
 
         if(searchId === undefined) {
+            res.status(404)
             throw new Error("Invalid id"); 
         }
 
@@ -13,6 +14,7 @@ export const getPurchasesById = async (req: Request, res: Response) => {
         const [ purchaseExist ] = await db("purchases").where({id:searchId})
 
         if(!purchaseExist) { 
+            res.status(404)
             throw new Error("There is no purchase with this id"); 
         }
 
