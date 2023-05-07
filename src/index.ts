@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 // import { getProductsById } from './endpoints/products/getProductById'
-// import { getUserPurchasesByUserId } from './endpoints/purchases/getUserPurchasesByUserId'
+import { getPurchasesById } from './endpoints/purchases/getUserPurchasesById'
 import { getUsers } from './endpoints/users/getUsers'
 import { getProducts } from './endpoints/products/getProducts'
 import { createProduct } from './endpoints/products/postCreateProduct'
@@ -36,4 +36,4 @@ app.put('/products/:id', editProduct)
 
 app.post('/purchases', createPurchase)
 app.delete('/purchases/:id', removePurchase)
-// app.get('/users/:id/purchases', getUserPurchasesByUserId)
+app.get('/purchases/:id', getPurchasesById)

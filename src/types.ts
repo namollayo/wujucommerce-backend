@@ -21,6 +21,17 @@ export type TProduct= {
     universe:TRAVEL_UNIVERSE | undefined,
     image_url:string | undefined
 }
+export type TProductPOST= {
+    productId:string | undefined,
+    name:string | undefined,
+    price:number | undefined,
+    priceNight:number | undefined,
+    nights:number | undefined,
+    quantity:number | undefined,
+    description: string | undefined,
+    universe:TRAVEL_UNIVERSE | undefined,
+    image_url:string | undefined
+}
 
 export type TProductDB = {
     id:string | undefined,
@@ -34,19 +45,48 @@ export type TProductDB = {
     createdAt: string | undefined
 }
 
-export type TPurchase = {
+export type TProductDBPOST = {
+    id:string | undefined,
+    name:string | undefined,
+    price:number | undefined,
+    price_night:number | undefined,
+    description: string | undefined,
+    universe:TRAVEL_UNIVERSE | undefined,
+    image_url:string | undefined,
+    nights:number | undefined,
+    quantity:number | undefined,
+    status: number | undefined
+    createdAt: string | undefined
+}
+
+// export type TPurchase = {
+//     id:string| undefined,
+//     buyer:string| undefined,
+//     paid:boolean| undefined,
+//     createdAt:string| undefined,
+//     totalPrice:number| undefined
+// }
+
+export type TPurchaseDB = {
     id:string| undefined,
     buyer:string| undefined,
     paid:boolean| undefined,
-    createdAt:string| undefined,
-    totalPrice:number| undefined
+    created_At:string| undefined,
+    total_price:number| undefined
 }
 
 
-export type TPurchase_Product = { id:string| undefined,
-buyer:string| undefined,
-totalPrice:number | undefined,
-products: TProduct_Purchase[] | undefined []
+export type TPurchase_Product = { 
+    id:string| undefined,
+    buyer:string| undefined,
+    totalPrice:number | undefined,
+    products: TProduct_Purchase[] | undefined []
+}
+
+export type TPurchase_example = { 
+    id:string| undefined,
+    buyer:string| undefined,
+    products: any
 }
 
 export type TProduct_Purchase = {
