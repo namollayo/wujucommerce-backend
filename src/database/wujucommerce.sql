@@ -49,3 +49,5 @@ CREATE TABLE purchases_products (
 );
 
 DROP TABLE purchases_products;
+
+SELECT * from purchases_products;
